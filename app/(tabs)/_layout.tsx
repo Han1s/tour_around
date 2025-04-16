@@ -6,6 +6,14 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: "#ffd33d",
+        headerStyle: {
+          backgroundColor: "#25292e",
+        },
+        headerShadowVisible: false,
+        headerTintColor: "#fff",
+        tabBarStyle: {
+          backgroundColor: "#25292e",
+        },
       }}
     >
       <Tabs.Screen
@@ -18,7 +26,13 @@ export default function TabLayout() {
           }: {
             color: string;
             focused: boolean;
-          }) => <Ionicons name="search" size={24} color={color} />,
+          }) => (
+            <Ionicons
+              name={focused ? "search-sharp" : "search-outline"}
+              size={24}
+              color={color}
+            />
+          ),
         }}
       />
       <Tabs.Screen
@@ -31,7 +45,13 @@ export default function TabLayout() {
           }: {
             color: string;
             focused: boolean;
-          }) => <Ionicons name="boat" size={24} color={color} />,
+          }) => (
+            <Ionicons
+              name={focused ? "boat" : "boat-outline"}
+              size={24}
+              color={color}
+            />
+          ),
         }}
       />
       <Tabs.Screen
@@ -44,7 +64,13 @@ export default function TabLayout() {
           }: {
             color: string;
             focused: boolean;
-          }) => <Ionicons name="person" size={24} color={color} />,
+          }) => (
+            <Ionicons
+              name={focused ? "person" : "person-outline"}
+              size={24}
+              color={color}
+            />
+          ),
         }}
       />
       <Tabs.Screen
@@ -57,7 +83,15 @@ export default function TabLayout() {
           }: {
             color: string;
             focused: boolean;
-          }) => <Ionicons name="information" size={24} color={color} />,
+          }) => (
+            <Ionicons
+              name={
+                focused ? "information-circle" : "information-circle-outline"
+              }
+              size={24}
+              color={color}
+            />
+          ),
         }}
       />
     </Tabs>
