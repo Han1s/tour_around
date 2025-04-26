@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const { COLORS } = require("./lib/constants");
 module.exports = {
   // NOTE: Update this to include the paths to all of your component files.
   content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
@@ -7,9 +8,7 @@ module.exports = {
     extend: {
       // TODO: change custom theme
       colors: {
-        lightGrey: "#fefefe",
         primary: "#030014",
-        accent: "#AB8BFF",
       },
     },
   },
