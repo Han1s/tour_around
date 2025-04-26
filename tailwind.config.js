@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       // TODO: change custom theme
       colors: {
+        lightGrey: "#fefefe",
         primary: "#030014",
         accent: "#AB8BFF",
       },

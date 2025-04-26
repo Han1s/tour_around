@@ -37,3 +37,4 @@ Join our community of developers creating universal apps.
 - [Video inspiration](https://www.youtube.com/watch?v=f8Z9JyB2EIE&t=1762s)
 - [Wireframe](https://wireframe.cc/o59gPd)
 - [Trello board](https://trello.com/b/Gz8WSy94/touraround)
+- [Design](https://dribbble.com/shots/16419424-Landmark-Finder-App)

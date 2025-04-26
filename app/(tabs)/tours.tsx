@@ -11,7 +11,7 @@ export default function ToursScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#25292e",
+    backgroundColor: "#fefefe",
     justifyContent: "center",
     alignItems: "center",
   },
