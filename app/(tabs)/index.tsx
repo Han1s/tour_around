@@ -1,6 +1,8 @@
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { COLORS } from "@/lib/constants";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import Button from "@/components/Button";
+import Card from "@/components/Card";
 
 export default function SearchScreen() {
   return (
@@ -14,6 +16,7 @@ export default function SearchScreen() {
         />
         <TextInput style={styles.input} placeholder="Enter email or username" />
       </View>
+      <Card />
       <Text className={"text-xl text-red-500 p-2"}>Search Link</Text>
       <Text className={"text-xl p-2"}>List of Cards</Text>
       <Text className={"text-xl p-2"}>Card 1</Text>

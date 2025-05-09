@@ -34,6 +34,7 @@ Join our community of developers creating universal apps.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
 
 ## Notes
+- [Component design inspiration](')
 - [Video inspiration](https://www.youtube.com/watch?v=f8Z9JyB2EIE&t=1762s)
 - [Wireframe](https://wireframe.cc/o59gPd)
 - [Trello board](https://trello.com/b/Gz8WSy94/touraround)
