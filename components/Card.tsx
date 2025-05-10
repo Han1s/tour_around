@@ -12,14 +12,13 @@ import { Ionicons } from "@expo/vector-icons";
 const HEIGHT = 225;
 const WIDTH = Dimensions.get("window").width;
 
-interface CardProps {
+export interface CardProps {
   images: string[];
   heading: string;
   price: number;
   stars: number;
   favorite: boolean;
   onPress?: () => any;
-  style?: any;
 }
 
 export default function Card({
@@ -99,12 +98,18 @@ export default function Card({
         </View>
       )}
       <Pressable onPress={onPress} style={styles.textContainer}>
-        <View style={styles.starContainer}>
-          <Ionicons name="star" size={16} color="#FF5A5F" />
-          <Text style={styles.starText}>{stars}</Text>
+        <View className={"flex-row justify-between"}>
+          <View>
+            <Text style={styles.heading}>{heading}</Text>
+          </View>
+          <View style={styles.starContainer}>
+            <Ionicons name="star" size={16} color="#FF5A5F" />
+            <Text style={styles.starText}>{stars}</Text>
+          </View>
         </View>
-        <Text style={styles.heading}>{heading}</Text>
-        <Text style={styles.subheading}>${price.toString()}</Text>
+        <View className={"flex flex-row justify-between w-full"}>
+          <Text style={styles.subheading}>${price.toString()}</Text>
+        </View>
       </Pressable>
     </View>
   );
@@ -112,7 +117,6 @@ export default function Card({
 
 const styles = StyleSheet.create({
   cardContainer: {
-    marginTop: 20,
     paddingHorizontal: 16,
     width: WIDTH,
     borderRadius: 10,
@@ -147,6 +151,6 @@ const styles = StyleSheet.create({
   textContainer: { marginTop: 10 },
   starContainer: { flexDirection: "row" },
   starText: { marginLeft: 5 },
-  heading: { fontSize: 20 },
-  subheading: { fontSize: 18, marginTop: 5 },
+  heading: { fontSize: 16, fontWeight: "bold" },
+  subheading: { fontSize: 16 },
 });

@@ -18,7 +18,8 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Search",
+          headerShown: false,
+          title: "Explore",
           tabBarIcon: ({
             color,
             focused,
