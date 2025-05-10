@@ -54,7 +54,7 @@ const MOCK_CARDS: Array<CardProps & { id: string }> = [
 
 export default function SearchScreen() {
   return (
-    <View className={"items-center bg-[#fefefe] flex-1 mx-4"}>
+    <View className={"items-center bg-[#fefefe] flex-1"}>
       <FlatList
         ListHeaderComponent={
           <View style={styles.inputContainer}>

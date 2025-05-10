@@ -39,3 +39,4 @@ Join our community of developers creating universal apps.
 - [Wireframe](https://wireframe.cc/o59gPd)
 - [Trello board](https://trello.com/b/Gz8WSy94/touraround)
 - [Design](https://dribbble.com/shots/16419424-Landmark-Finder-App)
+- [DbDiagram]('https://dbdiagram.io/d/681fa3b35b2fc4582f0a2ba1')
