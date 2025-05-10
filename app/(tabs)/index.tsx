@@ -1,7 +1,6 @@
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { COLORS } from "@/lib/constants";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import Button from "@/components/Button";
 import Card from "@/components/Card";
 
 export default function SearchScreen() {
@@ -16,11 +15,17 @@ export default function SearchScreen() {
         />
         <TextInput style={styles.input} placeholder="Enter email or username" />
       </View>
-      <Card />
-      <Text className={"text-xl text-red-500 p-2"}>Search Link</Text>
-      <Text className={"text-xl p-2"}>List of Cards</Text>
-      <Text className={"text-xl p-2"}>Card 1</Text>
-      <Text className={"text-xl p-2"}>Card 2</Text>
+      <Card
+        images={[
+          "../assets/images/placeholder_image_1.jpg",
+          "../assets/images/placeholder_image_2.jpg",
+        ]}
+        onPress={() => {}}
+        favorite={false}
+        heading={"City Tour"}
+        price={4}
+        stars={4.3}
+      />
     </View>
   );
 }
