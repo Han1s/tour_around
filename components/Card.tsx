@@ -14,18 +14,18 @@ const WIDTH = Dimensions.get("window").width;
 
 export interface CardProps {
   images: string[];
-  heading: string;
+  title: string;
   price: number;
-  stars: number;
+  rating: number;
   favorite: boolean;
   onPress?: () => any;
 }
 
 export default function Card({
   images,
-  heading,
+  title,
   price,
-  stars,
+  rating,
   favorite,
   onPress,
   ...rest
@@ -100,11 +100,11 @@ export default function Card({
       <Pressable onPress={onPress} style={styles.textContainer}>
         <View className={"flex-row justify-between"}>
           <View>
-            <Text style={styles.heading}>{heading}</Text>
+            <Text style={styles.heading}>{title}</Text>
           </View>
           <View style={styles.starContainer}>
             <Ionicons name="star" size={16} color="#FF5A5F" />
-            <Text style={styles.starText}>{stars}</Text>
+            <Text style={styles.starText}>{rating}</Text>
           </View>
         </View>
         <View className={"flex flex-row justify-between w-full"}>

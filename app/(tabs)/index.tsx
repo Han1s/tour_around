@@ -1,58 +1,72 @@
-import {
-  FlatList,
-  SafeAreaView,
-  StyleSheet,
-  TextInput,
-  View,
-} from "react-native";
+import { FlatList, StyleSheet, TextInput, View, Text } from "react-native";
 import { COLORS } from "@/lib/constants";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Card, { CardProps } from "@/components/Card";
+import { supabase } from "@/utils/supabase";
+import { useEffect, useState } from "react";
 
 const MOCK_CARDS: Array<CardProps & { id: string }> = [
   {
     images: ["image_link_1", "image_link_2"],
     price: 4,
     favorite: true,
-    heading: "Activity Tour",
-    stars: 5,
+    title: "Activity Tour",
+    rating: 5,
     id: "1",
   },
   {
     images: ["image_link_1", "image_link_2"],
     price: 4,
     favorite: false,
-    heading: "Sightseeing tour",
-    stars: 4,
+    title: "Sightseeing tour",
+    rating: 4,
     id: "2",
   },
   {
     images: ["image_link_1", "image_link_2"],
     price: 4,
     favorite: false,
-    heading: "Coffee tour",
-    stars: 3,
+    title: "Coffee tour",
+    rating: 3,
     id: "3",
   },
   {
     images: ["image_link_1", "image_link_2"],
     price: 4,
     favorite: true,
-    heading: "Rural tour",
-    stars: 2,
+    title: "Rural tour",
+    rating: 2,
     id: "4",
   },
   {
     images: ["image_link_1", "image_link_2"],
     price: 4,
     favorite: false,
-    heading: "Bike tour",
-    stars: 1,
+    title: "Bike tour",
+    rating: 1,
     id: "5",
   },
 ];
 
 export default function SearchScreen() {
+  const [tours, setTours] = useState<Tour[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getTours().then(() => {
+      setLoading(false);
+    });
+  }, []);
+
+  const getTours = async () => {
+    const { data } = await supabase.from("tours").select();
+    console.log(data);
+    setTours(data as Tour[]);
+    setLoading(false);
+  };
+
+  if (loading) return <Text>Loading...</Text>;
+
   return (
     <View className={"items-center bg-[#fefefe] flex-1"}>
       <FlatList
@@ -72,11 +86,18 @@ export default function SearchScreen() {
         }
         style={{ width: "100%", marginTop: 20 }}
         contentContainerStyle={{ gap: 30 }}
-        data={MOCK_CARDS}
+        data={tours}
         renderItem={({ item }) => {
-          return <Card {...item} />;
+          return (
+            <Card
+              {...item}
+              images={MOCK_CARDS[0].images}
+              rating={4.2}
+              favorite={false}
+            />
+          );
         }}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()}
         showsVerticalScrollIndicator={false}
       />
     </View>
