@@ -18,6 +18,7 @@ export interface CardProps {
   price: number;
   rating: number;
   favorite: boolean;
+  length: number;
   onPress?: () => any;
 }
 
@@ -28,6 +29,7 @@ export default function Card({
   rating,
   favorite,
   onPress,
+  length,
   ...rest
 }: CardProps) {
   const [favoriteItem, setFavoriteItem] = useState<boolean>(favorite);
@@ -104,7 +106,7 @@ export default function Card({
           </View>
           <View style={styles.starContainer}>
             <Ionicons name="star" size={16} color="#FF5A5F" />
-            <Text style={styles.starText}>{rating}</Text>
+            <Text style={styles.starText}>{rating.toString()}</Text>
           </View>
         </View>
         <View className={"flex flex-row justify-between w-full"}>

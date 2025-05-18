@@ -5,49 +5,6 @@ import Card, { CardProps } from "@/components/Card";
 import { supabase } from "@/utils/supabase";
 import { useEffect, useState } from "react";
 
-const MOCK_CARDS: Array<CardProps & { id: string }> = [
-  {
-    images: ["image_link_1", "image_link_2"],
-    price: 4,
-    favorite: true,
-    title: "Activity Tour",
-    rating: 5,
-    id: "1",
-  },
-  {
-    images: ["image_link_1", "image_link_2"],
-    price: 4,
-    favorite: false,
-    title: "Sightseeing tour",
-    rating: 4,
-    id: "2",
-  },
-  {
-    images: ["image_link_1", "image_link_2"],
-    price: 4,
-    favorite: false,
-    title: "Coffee tour",
-    rating: 3,
-    id: "3",
-  },
-  {
-    images: ["image_link_1", "image_link_2"],
-    price: 4,
-    favorite: true,
-    title: "Rural tour",
-    rating: 2,
-    id: "4",
-  },
-  {
-    images: ["image_link_1", "image_link_2"],
-    price: 4,
-    favorite: false,
-    title: "Bike tour",
-    rating: 1,
-    id: "5",
-  },
-];
-
 export default function SearchScreen() {
   const [tours, setTours] = useState<Tour[]>([]);
   const [loading, setLoading] = useState(true);
@@ -60,8 +17,12 @@ export default function SearchScreen() {
 
   const getTours = async () => {
     const { data } = await supabase.from("tours").select();
-    console.log(data);
-    setTours(data as Tour[]);
+    // FIXME: Flatlist bug? The conversion does not work within the extractor even as a template literal for some reason
+    const mappedData = (data || []).map((item) => ({
+      ...item,
+      id: `${item.id}`,
+    })) as Tour[];
+    setTours(mappedData);
     setLoading(false);
   };
 
@@ -89,15 +50,10 @@ export default function SearchScreen() {
         data={tours}
         renderItem={({ item }) => {
           return (
-            <Card
-              {...item}
-              images={MOCK_CARDS[0].images}
-              rating={4.2}
-              favorite={false}
-            />
+            <Card {...item} images={[]} rating={4} price={4} favorite={false} />
           );
         }}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
       />
     </View>
