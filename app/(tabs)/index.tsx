@@ -1,7 +1,7 @@
-import { FlatList, StyleSheet, TextInput, View, Text } from "react-native";
+import { FlatList, StyleSheet, Text, TextInput, View } from "react-native";
 import { COLORS } from "@/lib/constants";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import Card, { CardProps } from "@/components/Card";
+import Card from "@/components/Card";
 import { supabase } from "@/utils/supabase";
 import { useEffect, useState } from "react";
 
@@ -17,12 +17,7 @@ export default function SearchScreen() {
 
   const getTours = async () => {
     const { data } = await supabase.from("tours").select();
-    // FIXME: Flatlist bug? The conversion does not work within the extractor even as a template literal for some reason
-    const mappedData = (data || []).map((item) => ({
-      ...item,
-      id: `${item.id}`,
-    })) as Tour[];
-    setTours(mappedData);
+    setTours(data as Tour[]);
     setLoading(false);
   };
 
@@ -50,7 +45,16 @@ export default function SearchScreen() {
         data={tours}
         renderItem={({ item }) => {
           return (
-            <Card {...item} images={[]} rating={4} price={4} favorite={false} />
+            <Card
+              {...item}
+              id={item.id.toString()}
+              images={[
+                `https://picsum.photos/400/400?random=${item.id}`,
+                `https://picsum.photos/400/400?random=${item.id}`,
+              ]}
+              rating={4}
+              favorite={false}
+            />
           );
         }}
         keyExtractor={(item) => item.id}
@@ -63,15 +67,15 @@ export default function SearchScreen() {
 const styles = StyleSheet.create({
   input: {
     flex: 1,
-    paddingTop: 10,
-    paddingRight: 10,
-    paddingBottom: 10,
+    paddingTop: 16,
+    paddingRight: 16,
+    paddingBottom: 16,
     paddingLeft: 0,
   },
   inputContainer: {
     paddingVertical: 4,
     marginHorizontal: 16,
-    maxHeight: 48,
+    maxHeight: 96,
     borderRadius: 8,
     flexDirection: "row",
     justifyContent: "center",

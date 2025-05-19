@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { useState, useRef } from "react";
 import { Ionicons } from "@expo/vector-icons";
+import { numberToDollars } from "@/lib/generalHelpers";
 const HEIGHT = 225;
 const WIDTH = Dimensions.get("window").width;
 
@@ -20,6 +21,7 @@ export interface CardProps {
   favorite: boolean;
   length: number;
   onPress?: () => any;
+  id: string;
 }
 
 export default function Card({
@@ -69,7 +71,7 @@ export default function Card({
         data={images}
         horizontal
         showsHorizontalScrollIndicator={false}
-        keyExtractor={(item) => item}
+        keyExtractor={(item, index) => index.toString()} // TODO: use real key
         ref={(ref) => (flatListRef.current = ref)}
         snapToAlignment="center"
         pagingEnabled
@@ -79,7 +81,7 @@ export default function Card({
           return (
             <Pressable onPress={onPress} style={styles.imageContainer}>
               {/* TODO: replace with links */}
-              <Image style={styles.image} source={imageMapper[index]} />
+              <Image style={styles.image} src={item} />
             </Pressable>
           );
         }}
@@ -110,7 +112,7 @@ export default function Card({
           </View>
         </View>
         <View className={"flex flex-row justify-between w-full"}>
-          <Text style={styles.subheading}>${price.toString()}</Text>
+          <Text style={styles.subheading}>{numberToDollars(price)}</Text>
         </View>
       </Pressable>
     </View>
